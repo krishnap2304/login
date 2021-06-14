@@ -1,0 +1,9 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: env,health,metrics,info,hystrix.stream
+
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "127.0.0.1"

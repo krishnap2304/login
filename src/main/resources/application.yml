@@ -1,9 +1,28 @@
 server:
   port: 8091
-
+  host: localhost
 spring:
   application:
     name: LoginAPI
+  main:
+    allow-bean-definition-overriding=true:
+  zipkin:
+    baseUrl: http://localhost:9411/zipkin/
+  data:
+    mongodb:
+      database: login_db
+      port: 27017
+      host: localhost
+  mail:
+    host: smtp.gmail.com
+    properties:
+      mail:
+        smtp:
+          auth: false
+        starttls: true
+    port: 587
+  devtools:
+    enabled: true
 
 eureka:
   client:
@@ -13,3 +32,36 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     instance:
       hostname: localhost
+
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    metrics:
+      tags:
+        application: RegistrationAPI
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    cors:
+      allowed-origin: true
+
+  metrics:
+    tags:
+      application: "RegistrationAPI"
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "127.0.0.1"
+
+
+app:
+  jwtSecret: "*S*E*C*R*E*T*K*E*Y"
+  jwtExpiration: 8640000
+
+
+recaptcha:
+  verification:
+    endpoint: https://www.google.com/recaptcha/api/siteverify
+  secret: 6LfBMe0aAAAAAMm5nCS8kqrMsbhgJzBXU6U1OWDE
