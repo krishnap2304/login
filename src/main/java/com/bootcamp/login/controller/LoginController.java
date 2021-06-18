@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins ="*",maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/login")
 public class LoginController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
@@ -63,7 +63,7 @@ public class LoginController {
      * @param loginRequest
      * @return
      */
-    @PostMapping("signin")
+    @PostMapping
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest){
         boolean isvalidCaptcha = captchaValidatorService.validateCaptcha(loginRequest.getCaptchaResp(),null);
         if (!isvalidCaptcha) {
